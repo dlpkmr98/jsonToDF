@@ -1,0 +1,50 @@
+{
+    "offset": 1,
+    "total": 1,
+    "len": 50,
+    "workflows": [
+        {
+            "status": "SUCCEEDED",
+            "run": 0,
+            "startTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "appName": "no-op-wf",
+            "lastModTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "actions": [],
+            "acl": null,
+            "appPath": null,
+            "externalId": null,
+            "consoleUrl": "http://rkanter-MBP.local:11000/oozie?job=0000000-130522142644540-oozie-rkan-W",
+            "conf": null,
+            "parentId": null,
+            "createdTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "toString": "Workflow id[0000000-130522142644540-oozie-rkan-W] status[SUCCEEDED]",
+            "endTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "id": "0000000-130522142644540-oozie-rkan-W",
+            "group": null,
+            "user": "rkanter"
+        },
+		 {
+            "status": "FAILED",
+            "run": 0,
+            "startTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "appName": "Testing",
+            "lastModTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "actions": [],
+            "acl": null,
+            "appPath": null,
+            "externalId": null,
+            "consoleUrl": "http://rkanter-MBP.local:11000/oozie?job=0000000-130522142644540-oozie-rkan-W",
+            "conf": null,
+            "parentId": null,
+            "createdTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "toString": "Workflow id[0000000-130522142644540-oozie-rkan-W] status[SUCCEEDED]",
+            "endTime": "Wed, 22 May 2013 21:28:54 GMT",
+            "id": "0000000-130522142644540-oozie-rkan-W",
+            "group": null,
+            "user": "rTest"
+        }
+    ]
+}
+
+
+
