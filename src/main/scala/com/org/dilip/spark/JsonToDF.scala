@@ -16,7 +16,6 @@ trait JsonToDFService {
 }
 
 class JsonToDF extends JsonToDFService {
-
   def init[A, B <: String, C](f: B => A, f1: A => C) = (path: B) => f1(f(path))
 }
 
