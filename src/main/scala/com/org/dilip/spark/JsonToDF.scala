@@ -35,7 +35,7 @@ object JsonToDF {
     require(key != null, "key should be present")
     val workflows = ob.get.get(key).get.asInstanceOf[List[Map[String, String]]].map(_ - "actions" - "run" - "xyz") //.map(_ filter {case(k,v) => v!=null}) // uncomment if you don't want null as value
     val zipdata = workflows.filter(!_.isEmpty).map(x => x.toList.sortBy(_._1).unzip)
-    val defaultSchema = StructType(zipdata.head._1.map(k => StructField(k, StringType, nullable = false))) //only string type is supported. If your want more define your own schema with all Types.
+    val defaultSchema = StructType(zipdata.head._1.map(k => StructField(k, StringType, nullable = false))) //only string type is supported. If your want more.... So define your own schema with all Types.
     val schema = Option(schemas).getOrElse(defaultSchema)
     val rows = sc.parallelize(zipdata.map(_._2).map(x => (Row(x: _*))))
     sqlCtx.createDataFrame(rows, schema)
@@ -45,6 +45,7 @@ object JsonToDF {
   lazy val sc = SparkSupport.sc
   lazy val sqlCtx = SparkSupport.sqlCtx
   def main(args: Array[String]): Unit = {
+    //replace null with static schema
     JsonToDF().init(parsedJson, getWorkFlowDF)(jsonPath)(sc)(sqlCtx)("workflows")(null).show(false)
   }
 
