@@ -44,6 +44,13 @@
 			<artifactId>spark-sql_2.10</artifactId>
 			<version>${spark.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.scalatest/scalatest -->
+		<dependency>
+			<groupId>org.scalatest</groupId>
+			<artifactId>scalatest_2.10</artifactId>
+			<version>2.2.6</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 
@@ -58,6 +65,26 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.scalatest</groupId>
+				<artifactId>scalatest-maven-plugin</artifactId>
+				<version>1.0</version>
+				<configuration>
+					<!-- <parallel>true</parallel> -->
+					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+					<junitxml>.</junitxml>
+					<filereports>WDF TestSuite.txt</filereports>
+				</configuration>
+				<executions>
+					<execution>
+						<id>test</id>
+						<goals>
+							<goal>test</goal>
+						</goals>
+
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>
