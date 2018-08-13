@@ -13,7 +13,7 @@ object DataframeEx1 extends App {
   val accum = spark.sparkContext.longAccumulator("counter")
 
   /**
-   * tupples: Collect as array to small dataframe.
+   * tupples: Collect to small dataframe as array of array[String].
    */
   def tupples = (df1: DataFrame) => df1.map(_.toSeq.toArray.map(_.toString())).collect()
   
