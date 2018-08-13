@@ -12,15 +12,21 @@ object DataframeEx1 extends App {
 
   val accum = spark.sparkContext.longAccumulator("counter")
 
-  def tupples = (df1: DataFrame) => df1.map(x => 
-    (x.getString(0), x.getString(1),x.getString(2))).collect()
-    
-  def foldDF[A <: Array[(String, String, String)]](f:DataFrame => A) = 
+  /**
+   * tupples: Collect as array to small dataframe.
+   */
+  def tupples = (df1: DataFrame) => df1.map(_.toSeq.toArray.map(_.toString())).collect()
+  
+  /**
+ * @param f:DataFrame => Array[(String, String, String)]
+ * @return (DataFrame => A) => (DataFrame => (DataFrame => (LongAccumulator => DataFrame)))
+ */
+def foldDF[A <: Array[Array[String]]] = (f:DataFrame => A) => 
     (df1: DataFrame) => (df2: DataFrame) => (accum: LongAccumulator) => {
     f(df1).foldLeft(df2)((df, y) => {
       val cnt = accum.value
-      val ndf = df.withColumn("status" + y._1 + "_" + cnt,
-          when(df(y._1).geq(y._2.toDouble) and df(y._1).leq(y._3.toDouble), lit("Y")).otherwise(lit("N")))
+      val ndf = df.withColumn("status" + y(0) + "_" + cnt,
+          when(df(y(0)).geq(y(1).toDouble) and df(y(0)).leq(y(2).toDouble), lit("Y")).otherwise(lit("N")))
       accum.add(cnt + 1)
       ndf
     })
